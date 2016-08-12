@@ -1,7 +1,7 @@
 import datetime
 
 class Person:
-    def __init__(self, fname, lname, sex, birthdate, email, phone):
+    def __init__(self, fname, lname):#, sex, birthdate, email, phone):
         self.fname = fname
         self.lname = lname
         #self.sex = sex
@@ -16,6 +16,7 @@ class Person:
         #children list
 
     #check age function for proper return
+    '''
     def age(self):
         if hasattr(self, "_age"):
             return self._age
@@ -27,3 +28,4 @@ class Person:
         #return age
     def marry(self, first, last):
         self._spouse = first + " " + last
+    '''
