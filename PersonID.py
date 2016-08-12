@@ -4,12 +4,12 @@ class Person:
     def __init__(self, fname, lname, sex, birthdate, email, phone):
         self.fname = fname
         self.lname = lname
-        self.sex = sex
-        self.birthdate = birthdate
-        self.email = email
-        self.phone = phone
-        self.age()
-        self.marry("spousey","spouse")
+        #self.sex = sex
+        #self.birthdate = birthdate
+        #self.email = email
+        #self.phone = phone
+        #self.age()
+        #self.marry("spousey","spouse")
 
         #other attributes
         #parents list
