@@ -4,6 +4,7 @@ class Person:
     def __init__(self, fname, lname):#, sex, birthdate, email, phone):
         self.fname = fname
         self.lname = lname
+        self.children = []
         #self.sex = sex
         #self.birthdate = birthdate
         #self.email = email
