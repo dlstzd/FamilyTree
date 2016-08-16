@@ -1,22 +1,45 @@
 import datetime
 
+
 class Person:
-    def __init__(self, name):#, sex, birthdate, email, phone):
+
+    def __init__(self, name):#, birthdate, email, phone):
         self.name = name
         self.children = set([])
         self.parent1 = '?'
         self.parent2 = '?'
-        self.spouse = ''
-        #self.sex = sex
+        self.spouse = '?'
         #self.birthdate = birthdate
         #self.email = email
         #self.phone = phone
         #self.age()
-        #self.marry("spousey","spouse")
 
-        #other attributes
-        #parents list
-        #children list
+    def set_name(self, name):
+        self.name = name
+
+    def get_name(self):
+        return self.name
+
+    def set_parent1(self, parent1):
+        self.parent1 = parent1
+
+    def get_parent1(self):
+        return self.parent1
+
+    def set_parent2(self, parent2):
+        self.parent2 = parent2
+
+    def get_parent2(self):
+        return self.parent2
+
+    def set_spouse(self, spouse):
+        self.spouse = spouse
+
+    def get_spouse(self):
+        return self.spouse
+
+
+    #other attributes
 
     #check age function for proper return
     '''
@@ -31,4 +54,12 @@ class Person:
         #return age
     def marry(self, first, last):
         self._spouse = first + " " + last
+
+
+Scot = Person("Scott Hel")
+print(Scot.name, Scot.parent1)
+Scot.set_name("Peter")
+print(Scot.name, Scot.parent1)
+
+
     '''
