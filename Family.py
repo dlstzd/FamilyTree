@@ -9,7 +9,16 @@ def get_person(peopleList, name):
     for p in peopleList:
         if p.name == name:
             return p
-            # print(p)
+    else:
+
+        print(name + " does not currently exist, would you like to create this person?y/n")
+        uinput = input(">").lower()
+        if(uinput == 'y'):
+            person = Person(name)
+            add_person(peopleList, person)
+            return person
+        else:
+            return None
 
 
 def print_people(peopleList):
@@ -26,10 +35,11 @@ def find_by_name(peopleList, name):
 '''
 
 def add_person(peopleList, person):
-    if not get_person(peopleList, person.name):
+    #if not get_person(peopleList, person.name):
+    if person not in peopleList:
         peopleList.append(person)
-    #else:
-        #print("person added")
+    else:
+        print("person exists")
 
 
 # issue person remains as parent
@@ -44,6 +54,14 @@ def remove_person(peopleList, person):
                     spouse = get_person(peopleList, p.spouse)
                     spouse.spouse = '?'
                 peopleList.remove(p)
+            if len(p.children) is not 0: #mark parent as removed
+                for c in p.children:
+                    kid = get_person(peopleList, c)
+                    if p.name == kid.parent1:
+                        kid.parent1 += "(r)"
+                    if p.name == kid.parent2:
+                        kid.parent2 += "(r)"
+
 
         print("person deleted")
 
@@ -84,16 +102,15 @@ def modify_person(peopleList, person):
 
 
 def add_spouse(peopleList, person1, person2):
-    if person1 not in peopleList:
-        add_person(peopleList, person1)
-    if person2 not in peopleList:
-        add_person(peopleList, person2)
-    person1.spouse = person2.name
-    person2.spouse = person1.name
-    for c in person2.children:
-        person1.children.add(c)
-    for c in person1.children:
-        person2.children.add(c)
+    persona = get_person(peopleList, person1)
+    personb = get_person(peopleList, person2)
+    if persona is not None and personb is not None:
+        persona.spouse = personb.name
+        personb.spouse = persona.name
+        for c in personb.children:
+            persona.children.add(c)
+        for c in persona.children:
+            personb.children.add(c)
 
 
 
@@ -112,16 +129,12 @@ def add_parent(peopleList, parent, child):
 
 
 def add_child(peopleList, parent, child):
-    if parent not in peopleList:
-        add_person(peopleList, parent)
-    if child not in peopleList:
-        add_person(peopleList, child)
-    if parent in peopleList:
-        parent.children.add(child.name)
-        add_parent(peopleList, parent, child)
-        if parent.spouse != '?':
-            spouse = get_person(peopleList, parent.spouse)
-            add_parent(peopleList, spouse, child)
+
+    parent.children.add(child.get_name())
+    add_parent(peopleList, parent, child)
+    if parent.spouse != '?':
+        spouse = get_person(peopleList, parent.spouse)
+        add_parent(peopleList, spouse, child)
 
 def get_missing_parents(peopleList):
     for p in peopleList:
