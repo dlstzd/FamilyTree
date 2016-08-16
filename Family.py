@@ -123,7 +123,12 @@ def add_child(peopleList, parent, child):
             spouse = get_person(peopleList, parent.spouse)
             add_parent(peopleList, spouse, child)
 
-
+def get_missing_parents(peopleList):
+    for p in peopleList:
+        if p.parent1 != '?':
+            par = get_person(peopleList, p.parent1)
+            if par.spouse != '?':
+                p.parent2 = par.spouse
 
 print_people(peopleList)
 

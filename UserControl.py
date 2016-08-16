@@ -57,21 +57,20 @@ Zachary = Person("Zachary")
 William = Person("William")
 Anne = Person("Anne")
 
-Family.add_person(Family.peopleList, Devon)
 Family.add_child(Family.peopleList, Michael, Dean)
-Family.add_person(Family.peopleList, Zachary)
 Family.add_person(Family.peopleList, Alice)
 Family.add_person(Family.peopleList, Michael)
-Family.add_child(Family.peopleList, Alice, Devon)
 Family.add_spouse(Family.peopleList, Michael, Alice)
 #Family.add_parent(Family.peopleList, Alice, Devon)
 Family.add_person(Family.peopleList, Dean)
 Family.add_child(Family.peopleList, Michael, Zachary)
 Family.add_person(Family.peopleList, William)
+Family.add_child(Family.peopleList, Michael, Devon)
+
 Family.add_child(Family.peopleList, Anne, William)
 Family.add_child(Family.peopleList, Anne, Michael)
 
-
+Family.get_missing_parents(Family.peopleList)
 
 
 Family.print_people(Family.peopleList)
