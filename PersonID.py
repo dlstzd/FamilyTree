@@ -1,10 +1,12 @@
 import datetime
 
 class Person:
-    def __init__(self, fname, lname):#, sex, birthdate, email, phone):
-        self.fname = fname
-        self.lname = lname
+    def __init__(self, name):#, sex, birthdate, email, phone):
+        self.name = name
         self.children = []
+        self.parent1 = '?'
+        self.parent2 = '?'
+        self.spouse = ''
         #self.sex = sex
         #self.birthdate = birthdate
         #self.email = email
