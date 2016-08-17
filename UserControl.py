@@ -14,6 +14,7 @@ Alice = Person("Alice")
 Family.add_person(Family.peopleList, Dean)
 Family.add_person(Family.peopleList, Zach)
 Family.add_person(Family.peopleList, Devon)
+Family.add_person(Family.peopleList, Alice)
 
 
 class MainWindow(tk.Frame):
@@ -28,10 +29,16 @@ class MainWindow(tk.Frame):
                                 command=self.add_member)
         self.button_3 = tk.Button(self, text="Remove Member",
                                 command=self.remove_member)
-        self.welcome.pack(side="top")
-        self.button_1.pack(side="top")
-        self.button_2.pack(side="top")
-        self.button_3.pack(side="top")
+        self.button_4 = tk.Button(self, text="Add Parent",
+                                command=self.add_parent)
+
+        self.welcome.pack(side="left")
+        self.button_1.pack(side="top", expand=True)
+        self.button_2.pack(side="top", expand=True)
+        self.button_3.pack(side="top", expand=True)
+        self.button_4.pack(side="top", expand=True)
+
+
 
     def print_family(self):
         self.counter += 1
@@ -40,7 +47,7 @@ class MainWindow(tk.Frame):
 
         Family.print_people(Family.peopleList)
         l = tk.Label(t, text="See Shell for output")
-        l.pack(side="top", fill="both", expand=True, padx=100, pady=100)
+        l.pack(side="top", fill="both", expand=True, padx=50, pady=50)
 
     def add_member(self):
         t = tk.Toplevel(self)
@@ -76,11 +83,35 @@ class MainWindow(tk.Frame):
         l.grid(row=0)
         entry.grid(row=0, column=1)
         button.grid(row=1)
+    def add_parent(self):
+        t = tk.Toplevel(self)
+        t.wm_title("Add Parent")
+        l = tk.Label(t, text="Parent Name: ")
+        l2 = tk.Label(t, text="Child Name: ")
+        entry1 = tk.Entry(t)
+        entry2 = tk.Entry(t)
+
+        def on_button():
+            p_name = entry1.get()
+            c_name = entry2.get()
+            parent = Person(p_name)
+            child = Person(c_name)
+            #Family.remove_person(Family.peopleList, g)
+            Family.add_parent(Family.peopleList, parent, child)
+            time.sleep(1)
+            t.destroy()
+
+        button = tk.Button(t, text="Add", command=on_button)
+        l.grid(row=0)
+        l2.grid(row=1)
+        entry1.grid(row=0, column=1)
+        entry2.grid(row=1, column=1)
+        button.grid(row=2)
 
 if __name__ == "__main__":
     root = tk.Tk()
     main = MainWindow(root)
-    main.pack(side="top", fill="both", expand=True)
+    main.pack(side="top", fill="both", expand=True, padx=50, pady=50)
     root.mainloop()
 
 
