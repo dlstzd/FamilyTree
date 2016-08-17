@@ -1,4 +1,4 @@
-import datetime
+from datetime import date
 
 
 class Person:
@@ -9,10 +9,26 @@ class Person:
         self.parent1 = '?'
         self.parent2 = '?'
         self.spouse = '?'
+        self.birthyear = None
         #self.birthdate = birthdate
         #self.email = email
         #self.phone = phone
-        #self.age()
+        self.age = 0
+
+    def get_age(self, yeart):
+        print('here')
+        #if hasattr(self, "age"):
+        #    return self.age
+        #if self.birthyear is 0:
+        #    print("Birth year must be specified to calculate age")
+        #    return None
+        if self.birthyear is None:
+            self.birthyear = yeart
+        now = date.today()
+        age = now.year - yeart
+        print(age)
+        self.age = age
+        return age
 
     def set_name(self, name):
         self.name = name
@@ -42,24 +58,3 @@ class Person:
     #other attributes
 
     #check age function for proper return
-    '''
-    def age(self):
-        if hasattr(self, "_age"):
-            return self._age
-        now = datetime.date.today()
-        age = now.year - self.birthdate.year
-        if now < datetime.date(now.year, now.month, now.day):
-            age -= 1
-        self._age = age
-        #return age
-    def marry(self, first, last):
-        self._spouse = first + " " + last
-
-
-Scot = Person("Scott Hel")
-print(Scot.name, Scot.parent1)
-Scot.set_name("Peter")
-print(Scot.name, Scot.parent1)
-
-
-    '''

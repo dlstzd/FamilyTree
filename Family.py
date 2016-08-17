@@ -1,4 +1,5 @@
 from PersonID import *
+import tkinter as tk
 #future issue each person needs a unique id
 #or we list duplicate and allow the person to select the correct person --
 
@@ -11,7 +12,6 @@ def get_person(peopleList, name):
             print("person already exists")
             return p
     else:
-
         print(name + " does not currently exist, would you like to create this person?y/n")
         uinput = input(">").lower()
         if(uinput == 'y'):
@@ -23,8 +23,9 @@ def get_person(peopleList, name):
 
 
 def print_people(peopleList):
+    sorted(peopleList, Person.birthyear)
     for p in peopleList:
-        print(p.name, " | children: %s" % p.children, " | parents: %s, %s" % (p.parent1,  p.parent2), " | spouse: %s" % p.spouse)
+        print(" %s | children: %s | parents: %s, %s | spouse: %s | Birth Year: %s | Age: %s" % (p.name, p.children, p.parent1,  p.parent2, p.spouse, p.birthyear, p.age))
     print("-----------------------")
 
 '''
@@ -59,12 +60,16 @@ def remove_person(peopleList, person):
                     if p.name == kid.parent2:
                         kid.parent2 = '?'
             peopleList.remove(p)
-            print("person deleted")
+        if person.name in p.children: #remove person from list of children
+            p.children.remove(person.name)
+
 
     else:
         print("Person was not found")
 
 # issue of changing attributes could have to do with get_person function
+
+
 def modify_person(peopleList, person):
     if get_person(peopleList, person.name):
         print("Modify How?")
@@ -99,18 +104,21 @@ def modify_person(peopleList, person):
         print("Person was not found")
 
 
-
 def add_spouse(peopleList, person1, person2):
-    persona = get_person(peopleList, person1)
-    personb = get_person(peopleList, person2)
+    persona = get_person(peopleList, person1.name)
+    personb = get_person(peopleList, person2.name)
     if persona is not None and personb is not None:
         persona.spouse = personb.name
         personb.spouse = persona.name
         # link any children previously set to parent to be children of spouse
         for c in personb.children:
             persona.children.add(c)
+            ch = get_person(peopleList, c)
+            add_parent(peopleList, personb, ch)
         for c in persona.children:
             personb.children.add(c)
+            ch = get_person(peopleList, c)
+            add_parent(peopleList, personb, ch)
 
 
 def add_parent(peopleList, parent, child):
@@ -122,28 +130,13 @@ def add_parent(peopleList, parent, child):
 
         if c.parent1 == '?':
             c.parent1 = p.name
+            if p.spouse != '?':
+                c.parent2 = p.spouse
+                sp = get_person(peopleList, p.spouse)
+                sp.children.add(c.name)
         elif c.parent2 == '?':
             c.parent2 = p.name
-'''
-    for person in peopleList:
-        t = False
-        b = False
-        if person.name == parent.name:
-            print("Parent exists")
-            t = True
-    for person in peopleList:
-        if person.name == child.name:
-            print("Child exists")
-            b = True
-    if t and b:
-        print('here')
-        parent.children.add(child.name)
 
-        if child.parent1 == '?':
-            child.parent1 = parent.name
-            if parent.spouse != '?':
-                child.parent2 = parent.spouse
-'''
 
 def add_child(peopleList, parent, child):
 
@@ -153,6 +146,7 @@ def add_child(peopleList, parent, child):
         spouse = get_person(peopleList, parent.spouse)
         add_parent(peopleList, spouse, child)
 
+
 def get_missing_parents(peopleList):
     for p in peopleList:
         if p.parent1 != '?':
@@ -160,4 +154,7 @@ def get_missing_parents(peopleList):
             if par.spouse != '?':
                 p.parent2 = par.spouse
 
-
+def set_birthyear(name, year):
+    p = get_person(peopleList, name)
+    p.birthyear = year
+    p.get_age(year)
