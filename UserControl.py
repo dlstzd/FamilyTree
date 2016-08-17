@@ -16,26 +16,28 @@ Family.add_person(Family.peopleList, Zach)
 Family.add_person(Family.peopleList, Devon)
 Family.add_person(Family.peopleList, Alice)
 Dean.get_age(1994)
+Zach.get_age(1990)
 
 
 class MainWindow(tk.Frame):
     counter = 0
     def __init__(self, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
-        self.welcome = tk.Label(self, text= "Hello, this is a simple Family Tree program.\n\nSeveral options are listed, select one or exit\n__________________")
+        self.welcome = tk.Label(self,
+                                text= "Hello, this is a simple Family Tree program.\n\nSeveral options are listed, select one or exit\n__________________")
 
         self.button_1 = tk.Button(self, text="Print Family",
                                 command=self.print_family, width=15, background='green')
         self.button_2 = tk.Button(self, text="Add Member",
-                                command=self.add_member, width=15)
+                                command=self.add_member, width=15, activebackground='blue')
         self.button_3 = tk.Button(self, text="Remove Member",
                                 command=self.remove_member, width=15, background='red')
         self.button_4 = tk.Button(self, text="Add Parent",
-                                command=self.add_parent, width=15)
+                                command=self.add_parent, width=15, activebackground='blue')
         self.button_5 = tk.Button(self, text="Add Spouse",
-                                command=self.add_spouse, width=15)
+                                command=self.add_spouse, width=15, activebackground='blue')
         self.button_6 = tk.Button(self, text="Set Birth Year",
-                                command=self.get_birthyear, width=15)
+                                command=self.get_birthyear, width=15, activebackground='blue')
         self.welcome.pack(side="left")
         self.button_1.pack(side="top", expand=True, padx=10)
         self.button_2.pack(side="top", expand=True, padx=10)
