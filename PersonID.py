@@ -16,7 +16,7 @@ class Person:
         self.age = 0
 
     def get_age(self, yeart):
-        print('here')
+        #print('here')
         #if hasattr(self, "age"):
         #    return self.age
         #if self.birthyear is 0:
@@ -26,7 +26,7 @@ class Person:
             self.birthyear = yeart
         now = date.today()
         age = now.year - yeart
-        print(age)
+        #print(age)
         self.age = age
         return age
 
@@ -53,8 +53,3 @@ class Person:
 
     def get_spouse(self):
         return self.spouse
-
-
-    #other attributes
-
-    #check age function for proper return

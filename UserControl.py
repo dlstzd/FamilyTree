@@ -4,19 +4,10 @@ This will be a file for user action rather than hard coding values in the family
 import Family
 from PersonID import *
 import tkinter as tk
+import pickle
 import sys
 import time
 
-Dean = Person("Dean")
-Zach = Person("Zach")
-Devon = Person("Devon")
-Alice = Person("Alice")
-Family.add_person(Family.peopleList, Dean)
-Family.add_person(Family.peopleList, Zach)
-Family.add_person(Family.peopleList, Devon)
-Family.add_person(Family.peopleList, Alice)
-Dean.get_age(1994)
-Zach.get_age(1990)
 
 
 class MainWindow(tk.Frame):
@@ -38,6 +29,10 @@ class MainWindow(tk.Frame):
                                 command=self.add_spouse, width=15, activebackground='blue')
         self.button_6 = tk.Button(self, text="Set Birth Year",
                                 command=self.get_birthyear, width=15, activebackground='blue')
+        #self.button_7 = tk.Button(self, text="Set Birth Year",
+        #                        command=self.save_people, width=15, activebackground='blue')
+
+
         self.welcome.pack(side="left")
         self.button_1.pack(side="top", expand=True, padx=10)
         self.button_2.pack(side="top", expand=True, padx=10)
@@ -162,4 +157,9 @@ if __name__ == "__main__":
     root = tk.Tk()
     main = MainWindow(root)
     main.pack(side="top", fill="both", expand=True, padx=50, pady=50)
+
+
+    with open("list.pkl", "rb") as f:
+        Family.peopleList = pickle.loads(f.read())
+
     root.mainloop()
