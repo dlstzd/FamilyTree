@@ -8,6 +8,7 @@ peopleList = []
 def get_person(peopleList, name):
     for p in peopleList:
         if p.name == name:
+            print("person already exists")
             return p
     else:
 
@@ -35,11 +36,7 @@ def find_by_name(peopleList, name):
 '''
 
 def add_person(peopleList, person):
-    #if not get_person(peopleList, person.name):
-    if person not in peopleList:
-        peopleList.append(person)
-    else:
-        print("person exists")
+    peopleList.append(person)
 
 
 # issue person remains as parent
