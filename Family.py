@@ -23,7 +23,7 @@ def get_person(peopleList, name):
 
 
 def print_people(peopleList):
-    sorted(peopleList, Person.birthyear)
+    #sorted(peopleList, Person.birthyear)
     for p in peopleList:
         print(" %s | children: %s | parents: %s, %s | spouse: %s | Birth Year: %s | Age: %s" % (p.name, p.children, p.parent1,  p.parent2, p.spouse, p.birthyear, p.age))
     print("-----------------------")
